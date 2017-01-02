@@ -1,7 +1,7 @@
 # BigNumber-variable-length
 Variable-length BigNumber implementation in C++11
 
-This class has the same interface as the fixed-length BigNumber, but it does not impose a limit on number of digits that a BigNumber can hold. As a result, it can be more memory efficient (depending on the size of numbers you are working on) but it's generally slower.
+This class has the same interface as the fixed-length BigNumber, but it does not impose a limit on the number of digits that a BigNumber can hold. As a result, it can be more memory efficient (depending on the size of numbers you are working on) but it's generally slower.
 BigNumber has a very simple and natural interface and can be used like primitive types. The code below demonstrates its usage:
 ```C++
 #include "BigNumber.h"
@@ -49,3 +49,8 @@ int main()
 	return 0;
 }
 ```
+Because this class is not a template, friend functions and methods other than inline ones are defined in `BigNumber.cpp`. So, to compile your code, you need to compile BigNumber.cpp and link it to your program. For example, if your code is in `my_code.cpp`, then you can compile it using the following command:
+```
+g++ my_code.cpp BigNumber.cpp -o output -std=c++11 -O2
+```
+If you use another compiler, the command should be similar to the one above (But you need to change `g++` to your compiler's name).
