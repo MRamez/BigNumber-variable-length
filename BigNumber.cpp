@@ -136,7 +136,7 @@ namespace Big_Number
 		BigNumber num = std::move(*this);
 		num.sign = true;
 		BigNumber q;
-		for (int i = 0; i <= initial_shift; ++i)
+		for (std::size_t i = 0; i <= initial_shift; ++i)
 		{
 			unsigned char q_digit = 0;
 			while (num >= denom)
