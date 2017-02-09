@@ -35,14 +35,21 @@ namespace Big_Number
 			BigNumber(): sign(true) { digits.push_back(0); }
 			BigNumber(const std::string&);
 			BigNumber(const char* ca): BigNumber(std::string(ca)) {}
-			BigNumber(int n): BigNumber(std::to_string(n)) {} //This is needed, because without it, 0 cannot be automatically converted to a BigNumber.
-			BigNumber(long long int n): BigNumber(std::to_string(n)) {}
+			BigNumber(int n): BigNumber(std::to_string(n)) {} //This is required for "BigNumber(0)"
+			/*All of the following constructors are required (not just one of them) because otherwise calls to BigNumber constructor with
+			certain integral types would have been ambiguous.*/
+			BigNumber(unsigned n): BigNumber(std::to_string(n)) {}
+			BigNumber(long n): BigNumber(std::to_string(n)) {}
+			BigNumber(unsigned long n): BigNumber(std::to_string(n)) {}
+			BigNumber(long long n): BigNumber(std::to_string(n)) {}
+			BigNumber(unsigned long long n): BigNumber(std::to_string(n)) {}
 			
 			unsigned char& operator[](std::size_t i) { return digits[i]; }
 			const unsigned char& operator[](std::size_t i) const { return digits[i]; }
 			unsigned char& at(std::size_t i) { return digits.at(i); }
 			const unsigned char& at(std::size_t i) const { return digits.at(i); }
 			std::size_t size() const { return digits.size(); }
+			void reserve(std::size_t n) { digits.reserve(n); }
 			BigNumber& operator+=(const BigNumber&);
 			BigNumber& operator<<=(std::size_t);
 			BigNumber& operator*=(const BigNumber&);
