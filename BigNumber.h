@@ -84,6 +84,8 @@ namespace Big_Number
 		friend BigNumber min(const BigNumber&, const BigNumber&);
 		friend bool is_even(const BigNumber&);
 		friend bool is_odd(const BigNumber&);
+		friend bool is_positive(const BigNumber&);
+		friend bool is_negative(const BigNumber&);
 		friend BigNumber operator^(const BigNumber&, const BigNumber&);
 		friend bool operator<(const BigNumber&, const BigNumber&);
 		friend bool operator>(const BigNumber&, const BigNumber&);
@@ -222,6 +224,16 @@ namespace Big_Number
 	inline bool is_odd(const BigNumber& bn)
 	{
 		return !is_even(bn);
+	}
+
+	inline bool is_positive(const BigNumber& bn)
+	{
+		return bn.sign;
+	}
+
+	inline bool is_negative(const BigNumber& bn)
+	{
+		return !is_positive(bn);
 	}
 
 	inline BigNumber operator^(const BigNumber& lhs, const BigNumber& rhs)
